@@ -29,7 +29,7 @@ void func(vector<pair<int, int>>::iterator iter){
     int c_idx = col / 3;
     for (int i = r_idx * 3; i < (r_idx+1) * 3; i++)
     {
-        for (int j = c_idx*3; j < (c_idx + 1) * 3; j++)
+        for (int j = c_idx * 3; j < (c_idx + 1) * 3; j++)
         {            
             check[board[i][j]] = true;
         }        
@@ -39,7 +39,7 @@ void func(vector<pair<int, int>>::iterator iter){
         if(check[i]) continue;
         board[row][col] = i;  
         //백트래킹이므로 iter가 증가한 후 다시 반환되어야 한다는 것에 유의 iter++, ++iter -> 사용 X      
-        func(iter+1);        
+        func(next(iter));        
         board[row][col] = 0;        
     }
     
