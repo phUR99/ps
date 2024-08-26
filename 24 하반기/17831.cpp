@@ -34,6 +34,7 @@ int solve(int cur, int state)
         ret = now;
         for (auto nxt : adj[cur])
         {
+            // 식을 세울 때 가장 헤맨 부분, dfs로만 인접한 원소의 합을 찾는 방법은 없음.
             ret = max(ret, now - solve(nxt, 0) + solve(nxt, 1) + cost[cur] * cost[nxt]);
         }
     }
