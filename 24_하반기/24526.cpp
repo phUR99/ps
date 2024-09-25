@@ -5,9 +5,11 @@ using namespace std;
     cin.tie(NULL);                   \
     cout.tie(NULL)
 /*
-1.
-
-
+1. 위상정렬 + DP
+-> 정방향으로 위상정렬을 하되 DP를 이용해서 상태를 저장
+2. 역뱡향 위상정렬
+-> 역방향으로 간선을 만들어준 뒤 indegree = 0 위상정렬
+-> 큐에 들어가는 정점의 수(사이클이 생기지 않는 정점의 수)
  */
 int cache[100005];
 bool visited[100005];
