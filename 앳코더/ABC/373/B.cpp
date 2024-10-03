@@ -4,19 +4,20 @@ using namespace std;
     ios_base::sync_with_stdio(NULL); \
     cin.tie(NULL);                   \
     cout.tie(NULL)
-void solve()
-{
-}
 
 int main()
 {
     fastio;
-    int t;
-    cin >> t;
-    while (t--)
+    string str;
+    cin >> str;
+    int cur = str.find('A');
+    int ans = 0;
+    for (char i = 'B'; i <= 'Z'; i++)
     {
-        solve();
+        int nxt = str.find(i);
+        ans += abs(nxt - cur);
+        cur = nxt;
     }
-
+    cout << ans << '\n';
     return 0;
 }
