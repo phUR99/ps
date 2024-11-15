@@ -1,51 +1,62 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define fastio ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0)
+#define fastio                    \
+    ios_base::sync_with_stdio(0); \
+    cin.tie(0);                   \
+    cout.tie(0)
 int N, M;
-int cost[25][305];
-int cache[25][305];
+int costs[305][25];
+int cache[305][25];
+int trace[305][25];
+/*
+어떻게 추적하지?
+1. remain - i 로 연속해서 추적하기
 
-int main(){
+*/
+int maxProfit(int idx, int remain)
+{
+    if (idx == M)
+        return 0;
+    int &ret = cache[remain][idx];
+    if (ret != -1)
+        return ret;
+    ret = 0;
+    for (int i = 0; i <= N; i++)
+    {
+        if (remain >= i)
+        {
+            if (ret < maxProfit(idx + 1, remain - i) + costs[i][idx])
+            {
+                ret = maxProfit(idx + 1, remain - i) + costs[i][idx];
+                trace[remain][idx] = remain - i;
+            }
+        }
+    }
+    return ret;
+}
+
+int main()
+{
     fastio;
     cin >> N >> M;
-    int a,b;
+    memset(cache, -1, sizeof(cache));
     for (int i = 0; i < N; i++)
     {
-        cin >> a;
-        for (int j = 1; j <= M; j++)
-        {            
-            cin >> cost[j][a];
+        int cost;
+        cin >> cost;
+        for (int j = 0; j < M; j++)
+        {
+            cin >> costs[cost][j];
         }
-        
     }
-    for (int i = 1; i <= M; i++)
+    int ret = maxProfit(0, N);
+    cout << ret << '\n';
+    int cur = N;
+    for (int i = 0; i < M; i++)
     {
-        for (int j = N; j >=  0; j--)
-        {
-            cache[i][j] = max(cache[i][j], cache[i-1][N-j] + cost[i][j]);
-        }        
+        cout << cur - trace[cur][i] << ' ';
+        cur = trace[cur][i];
     }
-    vector<int> trace(N+1);
-    int idx = M;
-    int cur = cache[M][N];
-    while (idx > 0)
-    {
-        for (int j = N; j >= 0; j--)
-        {
-            if(cur == cache[idx-1][N-j] + cost[idx][j]){
-                trace[idx] = j;
-                cur -= cost[idx][j];
-                break;
-            }
-        }        
-        idx--;
-    }
-            
-    cout << cache[M][N] << '\n';
-    for (int i = 1; i <= M; i++)
-    {
-        cout << trace[i] << ' ';
-    }
-    
+
     return 0;
 }

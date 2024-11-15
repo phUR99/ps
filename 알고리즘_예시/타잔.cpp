@@ -4,7 +4,6 @@
 2. 방문 가능한 최소 정점을 찾은 후 stack을 pop하면서
 자신의 번호가 등장할 때까지 찾음
 -> stack에서 나온 정점은 모두 SCC
-
 */
 
 #include <bits/stdc++.h>
