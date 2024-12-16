@@ -5,6 +5,9 @@ using namespace std;
     cin.tie(NULL)
 #define ll long long
 int n;
+/*
+최솟값이 처음 시작의 최댓값에서 끝나야 하는 이유
+*/
 
 int main()
 {
