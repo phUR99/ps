@@ -12,17 +12,15 @@ int find(int u)
         return u;
     return parent[u] = find(parent[u]);
 }
-int square(int x)
-{
-    return x * x;
-}
-int dist(int x1, int y1, int x2, int y2)
-{
-    return square(x1 - x2) + square(y1 - y2);
-}
 
 bool merge(int u, int v)
 {
+    auto square = [&](int x)
+    { return x * x; };
+    auto dist = [&](int x1, int y1, int x2, int y2)
+    {
+        return square(x1 - x2) + square(y1 - y2);
+    };
     bool isInside = (dist(x[u], y[u], x[v], y[v]) <= dist(r[u], 0, -r[v], 0));
     if (!isInside)
         return false;
