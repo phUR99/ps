@@ -1,3 +1,4 @@
 .cph/
 *.txt
 *.exe
+.vscode/
