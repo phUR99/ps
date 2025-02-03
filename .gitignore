@@ -2,3 +2,8 @@
 *.txt
 *.exe
 .vscode/
+*.csv
+*.xlsx
+SWEA특강/
+소프티어/
+TEMP.cpp
